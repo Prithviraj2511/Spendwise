@@ -1,6 +1,8 @@
 package com.spendwise.auth_service.service;
 
 import com.spendwise.auth_service.entities.UserInfo;
+import com.spendwise.auth_service.eventProducer.UserInfoEvent;
+import com.spendwise.auth_service.eventProducer.UserInfoProducer;
 import com.spendwise.auth_service.model.UserInfoDto;
 import com.spendwise.auth_service.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -23,6 +25,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserInfoProducer userInfoProducer;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,6 +45,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         String userId = UUID.randomUUID().toString();
         userRepository.save(new UserInfo(userId, userInfoDto.getUsername(), userInfoDto.getPassword(), new HashSet<>()));
+        userInfoProducer.sendEventToKafka(userInfoEventToPublish(userInfoDto,userId));
         return true;
+    }
+
+    private UserInfoEvent userInfoEventToPublish(UserInfoDto userInfoDto, String userId){
+        return UserInfoEvent.builder()
+                .userId(userId)
+                .firstName(userInfoDto.getFirstName())
+                .lastName(userInfoDto.getLastName())
+                .email(userInfoDto.getEmail())
+                .phoneNumber(userInfoDto.getPhoneNumber())
+                .build();
     }
 }

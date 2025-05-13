@@ -1,5 +1,6 @@
 package com.spendwise.auth_service.auth;
 
+import com.spendwise.auth_service.eventProducer.UserInfoProducer;
 import com.spendwise.auth_service.repository.UserRepository;
 import com.spendwise.auth_service.service.UserDetailsServiceImpl;
 import lombok.Data;
@@ -34,8 +35,8 @@ public class SecurityConfig {
 
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        return new UserDetailsServiceImpl(userRepository, passwordEncoder);
+    public UserDetailsService userDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserInfoProducer userInfoProducer) {
+        return new UserDetailsServiceImpl(userRepository, passwordEncoder, userInfoProducer);
     }
 
     @Bean
