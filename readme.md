@@ -26,6 +26,8 @@
 &nbsp;
 <a href="https://redis.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/Prithviraj2511/prithviraj-patil/refs/heads/main/public/images/docker_word.svg" alt="rabbitMq" width="80" height="40"/> </a> 
 &nbsp;
+<a href="https://kafka.apache.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/Prithviraj2511/prithviraj-patil/refs/heads/main/public/images/kafka_word.svg" alt="kafka" height="40"/> </a> 
+&nbsp;
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Prithviraj2511/prithviraj-patil/refs/heads/main/public/images/Kong_word_dark.svg" width="60" height="40">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Prithviraj2511/prithviraj-patil/refs/heads/main/public/images/Kong_word_white.svg" width="60">
