@@ -23,7 +23,6 @@ import java.util.List;
 
 @Component
 @AllArgsConstructor
-@Data
 public class JWTAuthFilter extends OncePerRequestFilter
 {
 
